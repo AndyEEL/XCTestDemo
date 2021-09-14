@@ -1,6 +1,6 @@
 //
-//  Albertos.swift
-//  Albertos
+//  MenuItem.swift
+//  MenuItem
 //
 //  Created by 이동건 on 2021/09/14.
 //
@@ -12,6 +12,8 @@ struct MenuItem {
     
     let category: String
     let name: String
+    let spicy: Bool
+    let price: Double
 }
 
 struct MenuSection {

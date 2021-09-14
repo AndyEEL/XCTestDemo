@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct XCTestDemoApp: App {
     
-    let menu = [
+    let menu: [MenuItem] = [
         MenuItem(category: "starters", name: "Caprese Salad"),
         MenuItem(category: "starters", name: "Arancini Balls"),
         MenuItem(category: "pastas", name: "Penne all'Arrabbiata"),
@@ -25,7 +25,7 @@ struct XCTestDemoApp: App {
         WindowGroup {
             NavigationView {
                 MenuList(sections: groupMenuByCategory(menu))
-                    .navigationTitle("Alberto's 🌕")
+                    .navigationTitle("Alberto's 🇲🇪")
             }
             
         }
