@@ -11,7 +11,10 @@ import XCTest
 class LeapYearTests: XCTestCase {
 
     func testEvenlyDivisibleBy4IsLeap() {
-        XCTAssert(isLeap(2020))
+        
+        let year = 2020 // Arange
+        let leap = isLeap(year) // Act
+        XCTAssertTrue(leap) // Assert
         
     }
     

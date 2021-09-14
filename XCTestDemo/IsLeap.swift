@@ -1,6 +1,6 @@
 //
-//  Blank.swift
-//  Blank
+//  IsLeap.swift
+//  IsLeap
 //
 //  Created by 이동건 on 2021/09/13.
 //
@@ -12,5 +12,4 @@ func isLeap(_ year: Int) -> Bool {
     guard year % 100 != 0 else { return false }
     return year % 4 == 0
 }
-
 
