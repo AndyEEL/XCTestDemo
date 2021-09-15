@@ -16,19 +16,10 @@ struct MenuItem {
     let price: Double
 }
 
-struct MenuSection {
-    
-    let category: String
-    let items: [MenuItem]
-    
+
+extension MenuItem: Equatable {}
+
+extension MenuItem: Identifiable {
+    var id: String { name }
 }
 
-func groupMenuByCategory(_ menu: [MenuItem]) -> [MenuSection] {
-    
-    return Dictionary(grouping: menu, by: { $0.category })
-        .map { key, Value
-            in MenuSection(category: key, items: Value)
-        }
-        .sorted { $0.category > $1.category }
-    
-}
