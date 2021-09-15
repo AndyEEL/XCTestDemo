@@ -7,22 +7,37 @@
 
 import Foundation
 
+import Combine
+
 extension MenuList {
     
-    struct ViewModel {
+    class ViewModel: ObservableObject {
         
-        let sections: [MenuSection]
+        var cancellables = Set<AnyCancellable>()
+        
+        @Published private(set) var sections: [MenuSection]
         
         init(
-            menu: [MenuItem],
+            menuFetching: MenuFetching,
             menuGrouping: @escaping ([MenuItem]) ->
-            [MenuSection] = groupMenuByCategory
+        [MenuSection] = groupMenuByCategory
         ) {
-            self.sections = menuGrouping(menu)
+            sections = []
+            menuFetching
+                .fetchMenu()
+                .sink(receiveCompletion: {_ in },
+                      receiveValue: { [weak self] value in
+                    self?.sections = menuGrouping(value)
+                }
+                )
+                .store(in: &cancellables)
         }
+        
+        
         
     }
 }
+
 
 func groupMenuByCategory(_ menu: [MenuItem]) -> [MenuSection] {
     
@@ -31,4 +46,4 @@ func groupMenuByCategory(_ menu: [MenuItem]) -> [MenuSection] {
             in MenuSection(category: key, items: Value)
         }
         .sorted { $0.category > $1.category }
-}
+} 
